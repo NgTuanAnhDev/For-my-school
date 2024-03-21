@@ -1,0 +1,14 @@
+# Cài đặt Chocolatey (nếu chưa có)
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+# Cài đặt Python thông qua Chocolatey
+choco install python -y
+
+# Cài đặt Visual Studio Code thông qua Chocolatey
+choco install vscode -y
+
+
+# Thêm đường dẫn đến thư mục Scripts của Python vào biến môi trường Path
+$pythonPath = (Get-Command python).Source
+$pythonScriptsPath = Join-Path -Path $pythonPath -ChildPath 'Scripts'
+$env:Path += ";$pythonScriptsPath"
